@@ -1,0 +1,38 @@
+/*||RESET*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: #012;
+  font-size: 10px;
+  scroll-behavior: smooth;
+}
+
+body {
+  color: whitesmoke;
+  font-family: Arial;
+  font-size: clamp(1rem, 2.5vh, 2.5rem);
+  line-height: 1.4;
+}
+
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+a:any-link {
+  color: #eeff88;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+button {
+  font: inherit;
+  padding: 0 10px;
+}
