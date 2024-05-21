@@ -16,6 +16,10 @@ digitsBtn.forEach((dig) => {
   dig.addEventListener('click', setDigit);
 });
 
+operatorsBtn.forEach((opr) => {
+  opr.addEventListener('click', setOperator);
+});
+
 function setDigit() {
   const digitTarget = this.value;
 
@@ -29,5 +33,20 @@ function setDigit() {
       ? digitTarget
       : numberA += digitTarget;
     display.textContent = numberA;
+  }
+}
+
+function setOperator() {
+  const operatorTarget = this.value;
+  const currentDisplay = display.textContent;
+
+  if (operator) {
+    if (operator === currentDisplay.at(-1)) {
+      display.textContent = currentDisplay.replace(operator, operatorTarget)
+      operator = operatorTarget;
+    }
+  } else {
+    display.textContent += operatorTarget;
+    operator = operatorTarget;
   }
 }
