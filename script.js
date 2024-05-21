@@ -7,3 +7,7 @@ const percentBtn = document.querySelector('.percentage');
 const clearBtn = document.querySelector('.clear');
 const delBtn = document.querySelector('.delete');
 const equalBtn = document.querySelector('.equal');
+
+let numberA = '';
+let numberB = '';
+let operator = '';
