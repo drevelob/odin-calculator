@@ -21,6 +21,7 @@ operatorsBtn.forEach((opr) => {
 });
 
 equalBtn.addEventListener('click', getResult);
+clearBtn.addEventListener('click', clearAll);
 
 function setDigit() {
   const digitTarget = this.value;
@@ -70,7 +71,9 @@ function getResult() {
       numberB = '';
       operator = '';
     } else {
-      result = numberA;
+      result = numberA === ''
+        ? 0
+        : numberA
       equalBtn.value = 'display';
       display.textContent = result;
       operator = '';
@@ -101,4 +104,12 @@ function operate(numA, numB, operator) {
   }
 
   return operateResult;
+}
+
+function clearAll() {
+  numberA = '';
+  numberB = '';
+  operator = '';
+  display.textContent = '0';
+  equalBtn.value = '';
 }
