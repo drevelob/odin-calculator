@@ -20,6 +20,8 @@ operatorsBtn.forEach((opr) => {
   opr.addEventListener('click', setOperator);
 });
 
+equalBtn.addEventListener('click', getResult);
+
 function setDigit() {
   const digitTarget = this.value;
 
@@ -49,4 +51,54 @@ function setOperator() {
     display.textContent += operatorTarget;
     operator = operatorTarget;
   }
+}
+
+function getResult() {
+  if (!equalBtn.value) {
+    let result;
+    if (numberB) {
+      result = operate(numberA, numberB, operator);
+      equalBtn.value = result === 'error'
+        ? 'error'
+        : 'display';
+      display.textContent = result === 'error'
+        ? 'Can\'t divide by zero'
+        : result;
+      numberA = result === 'error'
+        ? 0
+        : result;
+      numberB = '';
+      operator = '';
+    } else {
+      result = numberA;
+      equalBtn.value = 'display';
+      display.textContent = result;
+      operator = '';
+    }
+  }
+}
+
+function operate(numA, numB, operator) {
+  let operateResult;
+  numA = Number(numA);
+  numB = Number(numB);
+
+  switch (operator) {
+    case '+':
+      operateResult = numA + numB;
+      break;
+    case '-':
+      operateResult = numA - numB;
+      break;
+    case '*':
+      operateResult = numA * numB;
+      break;
+    case '/':
+      operateResult = numB === 0
+        ? 'error'
+        : numA / numB;
+      break;
+  }
+
+  return operateResult;
 }
