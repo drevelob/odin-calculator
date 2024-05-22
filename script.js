@@ -26,6 +26,11 @@ clearBtn.addEventListener('click', clearAll);
 function setDigit() {
   const digitTarget = this.value;
 
+  if (equalBtn.value) {
+    display.textContent = '0';
+    equalBtn.value = '';
+  }
+
   if (operator) {
     if (numberB !== '0') {
       numberB += digitTarget;
@@ -42,6 +47,13 @@ function setDigit() {
 function setOperator() {
   const operatorTarget = this.value;
   const currentDisplay = display.textContent;
+
+  if (equalBtn.value) {
+    display.textContent = equalBtn.value === 'error'
+      ? 0
+      : currentDisplay;
+    equalBtn.value = '';
+  }
 
   if (operator) {
     if (operator === currentDisplay.at(-1)) {
