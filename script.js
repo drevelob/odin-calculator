@@ -48,7 +48,10 @@ function setOperator() {
   const operatorTarget = this.value;
   const currentDisplay = display.textContent;
 
-  if (equalBtn.value) {
+  if (numberB) {
+    getResult();
+    equalBtn.value = '';
+  } else if (equalBtn.value) {
     display.textContent = equalBtn.value === 'error'
       ? 0
       : currentDisplay;
