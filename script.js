@@ -22,6 +22,7 @@ operatorsBtn.forEach((opr) => {
 
 equalBtn.addEventListener('click', getResult);
 clearBtn.addEventListener('click', clearAll);
+pointBtn.addEventListener('click', setFloat);
 
 function setDigit() {
   const digitTarget = this.value;
@@ -127,4 +128,31 @@ function clearAll() {
   operator = '';
   display.textContent = '0';
   equalBtn.value = '';
+}
+
+function setFloat() {
+  const float = this.value;
+  const currentDisplay = display.textContent;
+
+  if (equalBtn.value) {
+    numberA = 0 + float;
+    display.textContent = numberA;
+    equalBtn.value = '';
+  } else {
+    if (operator) {
+      display.textContent = String(numberB).includes('.')
+        ? currentDisplay
+        : currentDisplay + float;
+      numberB = String(numberB).includes('.')
+        ? numberB
+        : numberB + float;
+    } else {
+      display.textContent = String(numberA).includes('.')
+        ? currentDisplay
+        : currentDisplay + float;
+      numberA = String(numberA).includes('.')
+        ? numberA
+        : numberA + float;
+    }
+  }
 }
