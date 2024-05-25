@@ -23,6 +23,7 @@ operatorsBtn.forEach((opr) => {
 equalBtn.addEventListener('click', getResult);
 clearBtn.addEventListener('click', clearAll);
 pointBtn.addEventListener('click', setFloat);
+percentBtn.addEventListener('click', getPercent);
 
 function setDigit() {
   const digitTarget = this.value;
@@ -89,7 +90,7 @@ function getResult() {
     } else {
       result = numberA === ''
         ? 0
-        : numberA
+        : numberA * 1;
       equalBtn.value = 'display';
       display.textContent = result;
       operator = '';
@@ -152,7 +153,33 @@ function setFloat() {
         : currentDisplay + float;
       numberA = String(numberA).includes('.')
         ? numberA
-        : numberA + float;
+        : numberA == 0
+          ? 0 + float
+          : numberA + float;
     }
+  }
+}
+
+function getPercent() {
+  if (operator) {
+    if (numberB != 0) {
+      switch (operator) {
+        case '+':
+        case '-':
+          numberB /= 100;
+          numberB *= numberA;
+          getResult();
+          break;
+        case '*':
+        case '/':
+          numberB /= 100;
+          getResult();
+          break;
+      }
+    }
+  } else {
+    equalBtn.value = '';
+    numberA /= 100;
+    display.textContent = numberA;
   }
 }
