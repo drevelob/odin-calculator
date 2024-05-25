@@ -24,6 +24,7 @@ equalBtn.addEventListener('click', getResult);
 clearBtn.addEventListener('click', clearAll);
 pointBtn.addEventListener('click', setFloat);
 percentBtn.addEventListener('click', getPercent);
+delBtn.addEventListener('click', setDelete);
 
 function setDigit() {
   const digitTarget = this.value;
@@ -181,5 +182,24 @@ function getPercent() {
     equalBtn.value = '';
     numberA /= 100;
     display.textContent = numberA;
+  }
+}
+
+function setDelete() {
+  if (!equalBtn.value) {
+    if (operator) {
+      if (numberB) {
+        numberB = numberB.slice(0, -1);
+      } else {
+        operator = '';
+      }
+      display.textContent = display.textContent.slice(0, -1);
+    } else {
+      numberA = String(numberA);
+      numberA = numberA.length > 1
+        ? numberA.slice(0, -1)
+        : 0;
+      display.textContent = numberA;
+    }
   }
 }
