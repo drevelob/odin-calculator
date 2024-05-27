@@ -1,3 +1,6 @@
+/*||IMPORT*/
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
 /*||RESET*/
 *,
 *::before,
@@ -15,7 +18,8 @@ html {
 
 body {
   color: whitesmoke;
-  font-family: Arial;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 500;
   font-size: clamp(1rem, 2.5vh, 2.5rem);
   line-height: 1.4;
 }
