@@ -142,7 +142,9 @@ function operate(numA, numB, operator) {
 
   return operateResult = operateResult === 'error'
     ? operateResult
-    : operateResult.toFixed(4);
+    : Number.isInteger(operateResult)
+      ? operateResult
+      : operateResult.toFixed(4);
 }
 
 function clearAll() {

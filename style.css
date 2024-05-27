@@ -46,11 +46,45 @@ button {
   aspect-ratio: 1 / 2;
   background-color: #011;
   margin: auto;
-  max-height: 100vh;
+  max-height: 1280px;
+  height: 100vh;
   width: auto;
 }
 
 .calculator_display,
 .calculator_buttons {
   height: 50%;
+}
+
+/*||DISPLAY*/
+.calculator_display {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  line-height: 1;
+  padding: 0 1.2em 2.4em;
+  text-align: end;
+}
+
+.expression {
+  font-size: 1.5em;
+}
+
+.display {
+  border-bottom: 2px solid #333;
+  font-size: 3em;
+}
+
+.result,
+.error {
+  opacity: 0.5;
+}
+
+.error {
+  font-size: 2em;
+}
+
+.result::before {
+  content: '=';
+  margin-right: 0.2em;
 }
