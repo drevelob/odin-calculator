@@ -40,3 +40,17 @@ button {
   font: inherit;
   padding: 0 10px;
 }
+
+/*||MAIN*/
+.main_container {
+  aspect-ratio: 1 / 2;
+  background-color: #011;
+  margin: auto;
+  max-height: 100vh;
+  width: auto;
+}
+
+.calculator_display,
+.calculator_buttons {
+  height: 50%;
+}
