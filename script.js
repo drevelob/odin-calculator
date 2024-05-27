@@ -140,7 +140,9 @@ function operate(numA, numB, operator) {
       break;
   }
 
-  return operateResult;
+  return operateResult = operateResult === 'error'
+    ? operateResult
+    : operateResult.toFixed(4);
 }
 
 function clearAll() {
