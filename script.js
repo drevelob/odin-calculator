@@ -32,6 +32,9 @@ function setDigit() {
   if (equalBtn.value) {
     display.textContent = '0';
     equalBtn.value = '';
+    expressionDis.textContent = '';
+    display.classList.remove('error');
+    display.classList.remove('result');
   }
 
   if (operator) {
@@ -50,10 +53,13 @@ function setDigit() {
 function setOperator() {
   const operatorTarget = this.value;
   const currentDisplay = display.textContent;
+  expressionDis.textContent = '';
 
   if (numberB) {
     getResult();
-    equalBtn.value = '';
+    equalBtn.value = equalBtn.value === 'error'
+      ? equalBtn.value
+      : '';
   } else if (equalBtn.value) {
     display.textContent = equalBtn.value === 'error'
       ? 0
@@ -67,14 +73,21 @@ function setOperator() {
       operator = operatorTarget;
     }
   } else {
-    display.textContent += operatorTarget;
-    operator = operatorTarget;
+    operator = equalBtn.value === 'error'
+      ? operator = ''
+      : operatorTarget;
+    display.textContent += operator;
   }
+
+  display.classList.remove('error');
+  display.classList.remove('result');
 }
 
 function getResult() {
   if (!equalBtn.value) {
     let result;
+    expressionDis.textContent = display.textContent;
+
     if (numberB) {
       result = operate(numberA, numberB, operator);
       equalBtn.value = result === 'error'
@@ -95,6 +108,12 @@ function getResult() {
       equalBtn.value = 'display';
       display.textContent = result;
       operator = '';
+    }
+
+    if (result === 'error') {
+      display.classList.add('error');
+    } else {
+      display.classList.add('result');
     }
   }
 }
@@ -129,7 +148,11 @@ function clearAll() {
   numberB = '';
   operator = '';
   display.textContent = '0';
+  expressionDis.textContent = '';
   equalBtn.value = '';
+
+  display.classList.remove('error');
+  display.classList.remove('result');
 }
 
 function setFloat() {
@@ -162,31 +185,37 @@ function setFloat() {
 }
 
 function getPercent() {
-  if (operator) {
-    if (numberB != 0) {
-      switch (operator) {
-        case '+':
-        case '-':
-          numberB /= 100;
-          numberB *= numberA;
-          getResult();
-          break;
-        case '*':
-        case '/':
-          numberB /= 100;
-          getResult();
-          break;
+  if (!equalBtn.value) {
+    if (operator) {
+      if (numberB != 0) {
+        switch (operator) {
+          case '+':
+          case '-':
+            numberB /= 100;
+            numberB *= numberA;
+            display.textContent = `${numberA}${operator}${numberB}`;
+            getResult();
+            break;
+          case '*':
+          case '/':
+            numberB /= 100;
+            display.textContent = `${numberA}${operator}${numberB}`;
+            getResult();
+            break;
+        }
       }
+    } else {
+      equalBtn.value = '';
+      numberA /= 100;
+      display.textContent = numberA;
     }
-  } else {
-    equalBtn.value = '';
-    numberA /= 100;
-    display.textContent = numberA;
   }
 }
 
 function setDelete() {
   if (!equalBtn.value) {
+    expressionDis.textContent = '';
+
     if (operator) {
       if (numberB) {
         numberB = numberB.slice(0, -1);
