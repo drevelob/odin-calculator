@@ -20,7 +20,7 @@ body {
   color: whitesmoke;
   font-family: "Rajdhani", sans-serif;
   font-weight: 500;
-  font-size: clamp(1rem, 2.5vh, 2.5rem);
+  font-size: clamp(1rem, 2vh, 2.5rem);
   line-height: 1.4;
 }
 
@@ -54,6 +54,7 @@ button {
 .calculator_display,
 .calculator_buttons {
   height: 50%;
+  max-width: 640px;
 }
 
 /*||DISPLAY*/
@@ -67,12 +68,12 @@ button {
 }
 
 .expression {
-  font-size: 1.5em;
+  font-size: 2em;
 }
 
 .display {
   border-bottom: 2px solid #333;
-  font-size: 3em;
+  font-size: 4em;
 }
 
 .result,
@@ -81,10 +82,49 @@ button {
 }
 
 .error {
-  font-size: 2em;
+  font-size: 2.5em;
 }
 
 .result::before {
   content: '=';
   margin-right: 0.2em;
+}
+
+/*||BUTTONS*/
+.calculator_buttons {
+  align-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9em;
+  justify-content: space-between;
+  padding: 0 1.2em 2.4em;
+}
+
+button {
+  background: none;
+  border: none;
+  border-radius: 50%;
+  box-shadow: none;
+  color: inherit;
+  font-size: 2em;
+  height: 2em;
+  outline: none;
+  width: 2em;
+}
+
+.equal {
+  background-color: #ff8822;
+}
+
+.operators,
+.equal {
+  font-weight: 700;
+}
+
+.operators,
+.clear,
+.delete,
+.percentage,
+.theme {
+  color: #ff8822;
 }

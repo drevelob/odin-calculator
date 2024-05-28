@@ -139,12 +139,11 @@ function operate(numA, numB, operator) {
         : numA / numB;
       break;
   }
-
   return operateResult = operateResult === 'error'
     ? operateResult
     : Number.isInteger(operateResult)
       ? operateResult
-      : operateResult.toFixed(4);
+      : operateResult.toFixed(2);
 }
 
 function clearAll() {
