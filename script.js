@@ -1,3 +1,4 @@
+const calculator = document.querySelector('body');
 const display = document.querySelector('.display');
 const expressionDis = document.querySelector('.expression');
 const digitsBtn = document.querySelectorAll('.digits');
@@ -27,9 +28,12 @@ pointBtn.addEventListener('click', setFloat);
 percentBtn.addEventListener('click', getPercent);
 delBtn.addEventListener('click', setDelete);
 themeBtn.addEventListener('click', setTheme);
+calculator.addEventListener('keydown', keyboardInput);
 
-function setDigit() {
-  const digitTarget = this.value;
+function setDigit(key) {
+  const digitTarget = this.value
+    ? this.value
+    : key;
 
   if (equalBtn.value) {
     display.textContent = '0';
@@ -52,10 +56,12 @@ function setDigit() {
   }
 }
 
-function setOperator() {
+function setOperator(key) {
   const MULTIPLY_SIGN = '\u00d7';
   const DIVIDE_SIGN = '\u00f7';
-  const operatorTarget = this.value;
+  const operatorTarget = this.value
+    ? this.value
+    : key;
   const currentDisplay = display.textContent;
   expressionDis.textContent = '';
 
@@ -179,6 +185,9 @@ function setFloat() {
     numberA = 0 + float;
     display.textContent = numberA;
     equalBtn.value = '';
+
+    display.classList.remove('error');
+    display.classList.remove('result');
   } else {
     if (operator) {
       display.textContent = String(numberB).includes('.')
@@ -275,4 +284,41 @@ function setTheme() {
 
   filterEffect = `hue-rotate(${filterDeg}deg)`;
   calculator.style.filter = filterEffect;
+}
+
+function keyboardInput(event) {
+  let key = event.key;
+
+  if (Number(key)) {
+    setDigit(key);
+  }
+
+  switch (key) {
+    case '0':
+      setDigit(key);
+      break;
+    case '+':
+    case '-':
+    case '*':
+    case '/':
+      setOperator(key);
+      break;
+    case '.':
+      setFloat();
+      break;
+    case '=':
+    case 'Enter':
+      event.preventDefault();
+      getResult();
+      break;
+    case '%':
+      getPercent();
+      break;
+    case 'Delete':
+    case 'Backspace':
+      setDelete();
+      break;
+    case 'Escape':
+      clearAll();
+  }
 }
