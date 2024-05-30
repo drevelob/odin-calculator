@@ -112,13 +112,33 @@ button {
   width: 2em;
 }
 
-.equal {
-  background-color: #ff8822;
-}
-
 .operators,
 .equal {
-  font-weight: 700;
+  font-family: Verdana, Tahoma, sans-serif;
+}
+
+.operators[value='*']::after {
+  content: '\2715';
+}
+
+.operators[value='/']::after {
+  content: '\00f7';
+}
+
+.theme::after {
+  content: '\2699';
+}
+
+.delete::after {
+  content: '\2A3B';
+}
+
+.delete {
+  transform: rotate(270deg);
+}
+
+.equal {
+  background-color: #ff8822;
 }
 
 .operators,

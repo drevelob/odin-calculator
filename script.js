@@ -51,6 +51,8 @@ function setDigit() {
 }
 
 function setOperator() {
+  const MULTIPLY_SIGN = '\u00d7';
+  const DIVIDE_SIGN = '\u00f7';
   const operatorTarget = this.value;
   const currentDisplay = display.textContent;
   expressionDis.textContent = '';
@@ -68,15 +70,24 @@ function setOperator() {
   }
 
   if (operator) {
-    if (operator === currentDisplay.at(-1)) {
-      display.textContent = currentDisplay.replace(operator, operatorTarget)
-      operator = operatorTarget;
+    if (operator === '*') {
+      operator = MULTIPLY_SIGN;
+    } else if (operator === '/') {
+      operator = DIVIDE_SIGN;
     }
+
+    display.textContent = currentDisplay.replace(operator, operatorTarget)
+    operator = operatorTarget;
   } else {
     operator = equalBtn.value === 'error'
       ? operator = ''
       : operatorTarget;
     display.textContent += operator;
+  }
+
+  if (display.textContent.includes('*') || display.textContent.includes('/')) {
+    display.textContent = display.textContent.replace('*', MULTIPLY_SIGN);
+    display.textContent = display.textContent.replace('/', DIVIDE_SIGN);
   }
 
   display.classList.remove('error');
@@ -159,7 +170,7 @@ function clearAll() {
 }
 
 function setFloat() {
-  const float = this.value;
+  const float = '.';
   const currentDisplay = display.textContent;
 
   if (equalBtn.value) {
