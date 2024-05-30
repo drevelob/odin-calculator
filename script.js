@@ -7,6 +7,7 @@ const percentBtn = document.querySelector('.percentage');
 const clearBtn = document.querySelector('.clear');
 const delBtn = document.querySelector('.delete');
 const equalBtn = document.querySelector('.equal');
+const themeBtn = document.querySelector('.theme');
 
 let numberA = '';
 let numberB = '';
@@ -25,6 +26,7 @@ clearBtn.addEventListener('click', clearAll);
 pointBtn.addEventListener('click', setFloat);
 percentBtn.addEventListener('click', getPercent);
 delBtn.addEventListener('click', setDelete);
+themeBtn.addEventListener('click', setTheme);
 
 function setDigit() {
   const digitTarget = this.value;
@@ -245,4 +247,32 @@ function setDelete() {
       display.textContent = numberA;
     }
   }
+}
+
+function setTheme() {
+  const calculator = document.querySelector('.main_container');
+  const theme = this.value;
+  let filterDeg = 0;
+  let filterEffect;
+
+  switch (theme) {
+    case '':
+      filterDeg = 90;
+      this.value = '1';
+      break;
+    case '1':
+      filterDeg = 180;
+      this.value = '2';
+      break;
+    case '2':
+      filterDeg = 270;
+      this.value = '3';
+      break;
+    case '3':
+      filterDeg = 0;
+      this.value = '';
+  }
+
+  filterEffect = `hue-rotate(${filterDeg}deg)`;
+  calculator.style.filter = filterEffect;
 }
