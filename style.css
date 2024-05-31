@@ -135,7 +135,6 @@ button {
 
 button:active:not(.equal, .theme) {
   background-color: var(--OPCOL);
-  filter: brightness(1.75);
 }
 
 .operators,
