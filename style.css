@@ -114,6 +114,12 @@ button {
   height: 2em;
   outline: none;
   width: 2em;
+
+  transition: background-color 0.25s;
+}
+
+button:active:not(.equal, .theme) {
+  background-color: hsla(0, 0%, 20%, 0.75);
 }
 
 .operators,
@@ -143,6 +149,11 @@ button {
 
 .equal {
   background-color: #ff8822;
+  transition: scale 0.5s;
+}
+
+.equal:active {
+  scale: 0.9;
 }
 
 .operators,
@@ -151,4 +162,12 @@ button {
 .percentage,
 .theme {
   color: #ff8822;
+}
+
+.theme {
+  transition: scale 0.25s;
+}
+
+.theme:active {
+  scale: 1.1;
 }
