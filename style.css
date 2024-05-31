@@ -1,6 +1,21 @@
 /*||IMPORT*/
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
+/*||VARIABLES*/
+:root {
+  /*Color*/
+  --BGCOL: #001224;
+  --FNCOL: #f9faf8;
+  --LKCOL: #eeff88;
+  --A1COL: #ff8822;
+  --A2COL: hsla(26, 45%, 90%, 0.2);
+  --OPCOL: hsla(200, 50%, 25%, 0.2);
+  --GDCOL: linear-gradient(90deg,
+      hsl(210, 100%, 7%)0%,
+      hsl(210, 100%, 10%)50%,
+      hsl(210, 100%, 7%)100%);
+}
+
 /*||RESET*/
 *,
 *::before,
@@ -11,13 +26,14 @@
 }
 
 html {
-  background-color: #012;
+  background-color: var(--BGCOL);
   font-size: 10px;
   scroll-behavior: smooth;
 }
 
 body {
-  color: whitesmoke;
+  background: var(--GDCOL);
+  color: var(--FNCOL);
   font-family: "Rajdhani", sans-serif;
   font-weight: 500;
   font-size: clamp(1rem, 2vh, 2.5rem);
@@ -31,7 +47,7 @@ img {
 }
 
 a:any-link {
-  color: #eeff88;
+  color: var(--LKCOL);
   text-decoration: none;
   font-weight: bold;
 }
@@ -44,9 +60,9 @@ button {
 /*||MAIN*/
 .main_container {
   aspect-ratio: 1 / 2;
-  background-color: #011;
+  background-color: var(--OPCOL);
   border-radius: 30px;
-  border: 2px solid #ff8822;
+  border: 2px solid var(--A1COL);
   box-shadow: 0px 0px 10px 2px hsla(28, 100%, 57%, 0.75);
   height: 100vh;
   margin: auto;
@@ -75,7 +91,7 @@ button {
 }
 
 .display {
-  border-bottom: 2px solid #333;
+  border-bottom: 2px solid var(--A2COL);
   font-size: 4em;
 }
 
@@ -113,13 +129,13 @@ button {
   font-size: 2em;
   height: 2em;
   outline: none;
-  width: 2em;
-
   transition: background-color 0.25s;
+  width: 2em;
 }
 
 button:active:not(.equal, .theme) {
-  background-color: hsla(0, 0%, 20%, 0.75);
+  background-color: var(--OPCOL);
+  filter: brightness(1.75);
 }
 
 .operators,
@@ -148,7 +164,7 @@ button:active:not(.equal, .theme) {
 }
 
 .equal {
-  background-color: #ff8822;
+  background-color: var(--A1COL);
   transition: scale 0.5s;
 }
 
@@ -161,7 +177,7 @@ button:active:not(.equal, .theme) {
 .delete,
 .percentage,
 .theme {
-  color: #ff8822;
+  color: var(--A1COL);
 }
 
 .theme {
